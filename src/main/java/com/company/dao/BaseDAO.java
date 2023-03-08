@@ -1,4 +1,3 @@
-/*
 package com.company.dao;
 
 import com.company.domain.Entity;
@@ -32,4 +31,3 @@ public abstract class BaseDAO<E extends Entity, ID extends Serializable> {
     }
 
 }
-*/

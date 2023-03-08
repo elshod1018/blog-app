@@ -1,4 +1,3 @@
-/*
 package com.company.dao;
 
 import com.company.domain.Blog;
@@ -50,4 +49,3 @@ public class BlogDAO extends BaseDAO<Blog, String> {
         return null;
     }
 }
-*/
