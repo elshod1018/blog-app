@@ -6,6 +6,7 @@ import com.company.domain.Blog;
 import com.company.domain.User;
 import com.company.dto.UserCreateDTO;
 import com.company.mapper.UserMapper;
+import com.company.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +19,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    private final UserDAO userDAO;
-    private final BlogDAO blogDAO;
+
+    private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public UserController(UserDAO userDAO, BlogDAO blogDAO, UserMapper userMapper) {
-        this.userDAO = userDAO;
-        this.blogDAO = blogDAO;
+    public UserController(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
         this.userMapper = userMapper;
     }
+
     @GetMapping
     public String list(Model model) {
         List<Blog> blogs = blogDAO.getAll();
@@ -42,8 +43,8 @@ public class UserController {
     @PostMapping("/create")
     public String create(@ModelAttribute UserCreateDTO dto) {
         User user = userMapper.fromCreateDTO(dto);
-        user = userDAO.save(user);
-        System.out.println(user);
+        user = userRepository.save(user);
+
         return "redirect:/user/create";
     }
 }

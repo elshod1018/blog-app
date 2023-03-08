@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Blog implements Entity{
+public class Blog {
     private String id;
     private String ownerId;
     private String title;
