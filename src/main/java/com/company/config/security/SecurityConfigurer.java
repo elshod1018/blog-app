@@ -38,7 +38,7 @@ public class SecurityConfigurer {
                             .loginPage("/auth/login")
                             .usernameParameter("username")
                             .passwordParameter("password")
-                            .defaultSuccessUrl("/home", false)
+                            .defaultSuccessUrl("/home", false);
                 })
                 .logout(httpSecurityLogoutConfigurer -> {
                     httpSecurityLogoutConfigurer
