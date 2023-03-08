@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head(title = 'Login Page')">
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(~{::title})">
+    <title>Login Page</title>
 </head>
 <body>
 <div class="row">
