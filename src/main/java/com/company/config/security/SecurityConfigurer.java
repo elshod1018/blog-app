@@ -26,27 +26,24 @@ public class SecurityConfigurer {
 
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
-                    authorizationManagerRequestMatcherRegistry
-                            .requestMatchers(WHITE_LIST)
-                            .permitAll()
-                            .anyRequest()
-                            .authenticated();
-                })
-                .formLogin(httpSecurityFormLoginConfigurer -> {
-                    httpSecurityFormLoginConfigurer
-                            .loginPage("/auth/login")
-                            .usernameParameter("username")
-                            .passwordParameter("password")
-                            .defaultSuccessUrl("/home", false);
-                })
-                .logout(httpSecurityLogoutConfigurer -> {
-                    httpSecurityLogoutConfigurer
-                            .logoutUrl("/auth/logout")
-                            .clearAuthentication(true)
-                            .deleteCookies("JSESSION", "rememberMe")
-                            .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logou", "POST"));
-                })
+                .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
+                        authorizationManagerRequestMatcherRegistry
+                                .requestMatchers(WHITE_LIST)
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated())
+                .formLogin(httpSecurityFormLoginConfigurer ->
+                        httpSecurityFormLoginConfigurer
+                                .loginPage("/auth/login")
+                                .usernameParameter("username")
+                                .passwordParameter("password")
+                                .defaultSuccessUrl("/home", false))
+                .logout(httpSecurityLogoutConfigurer ->
+                        httpSecurityLogoutConfigurer
+                                .logoutUrl("/auth/logout")
+                                .clearAuthentication(true)
+                                .deleteCookies("JSESSION", "rememberMe")
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logou", "POST")))
                 .rememberMe(httpSecurityRememberMeConfigurer ->
                         httpSecurityRememberMeConfigurer
                                 .rememberMeParameter("rememberMe")

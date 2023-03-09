@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.config.security.UserUserDetails;
 import com.company.domain.Blog;
 import com.company.domain.User;
 import com.company.dto.UserCreateDTO;
@@ -7,6 +8,7 @@ import com.company.mapper.UserMapper;
 import com.company.repository.BlogRepository;
 import com.company.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,7 @@ public class UserController {
 
 
     @GetMapping
-    public String list(Model model) {
+    public String userBlogListPage(Model model, @AuthenticationPrincipal UserUserDetails user) {
         List<Blog> blogs = blogRepository.getAll();
         model.addAttribute("blogs", blogs);
         return "main";
